@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
     <list default="true" id="3628482d-b3ea-4e9f-9848-ad56c3f66ca2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-=======
     <list default="true" id="33477f21-cbc7-492c-b24b-83392ab09c48" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/KPC.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -19,7 +17,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-<<<<<<< HEAD
   <component name="FUSProjectUsageTrigger">
     <session id="332604385">
       <usages-collector id="statistics.lifecycle.project">
@@ -63,7 +60,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-=======
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="FSM.py" pinned="false" current-in-tab="false">
@@ -122,7 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-<<<<<<< HEAD
         <option value="$PROJECT_DIR$/test2.py" />
 =======
         <option value="$PROJECT_DIR$/FSM.py" />
@@ -133,7 +128,6 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-<<<<<<< HEAD
     <option name="x" value="25" />
     <option name="y" value="164" />
     <option name="width" value="1284" />
@@ -173,7 +167,6 @@
         <subPane>
           <expand>
             <path>
-<<<<<<< HEAD
               <item name="Key_controller" type="b2602c69:ProjectViewProjectNode" />
 =======
               <item name="key_controller" type="b2602c69:ProjectViewProjectNode" />
@@ -184,7 +177,6 @@
           <select />
         </subPane>
       </pane>
-<<<<<<< HEAD
       <pane id="Course" />
     </panes>
   </component>
@@ -209,7 +201,6 @@
       </list>
     </option>
   </component>
-<<<<<<< HEAD
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -266,7 +257,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
->>>>>>> a130a1dddf05baf57ddaa08bf01c2f6f4110c966
+
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
