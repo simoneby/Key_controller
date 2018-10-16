@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/Key_controller.iml" filepath="$PROJECT_DIR$/.idea/Key_controller.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/key_controller.iml" filepath="$PROJECT_DIR$/.idea/key_controller.iml" />
+>>>>>>> a130a1dddf05baf57ddaa08bf01c2f6f4110c966
     </modules>
   </component>
 </project>
