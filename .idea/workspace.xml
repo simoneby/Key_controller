@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <list default="true" id="33477f21-cbc7-492c-b24b-83392ab09c48" name="Default" comment="" />
+=======
+<<<<<<< HEAD
+>>>>>>> 5560c80f32d4839e3c3550519d8ca763c24bd994
     <list default="true" id="3628482d-b3ea-4e9f-9848-ad56c3f66ca2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -9,6 +16,7 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/KPC.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
+>>>>>>> 245e9e19a07156c3e65e0f6fc2c90e9aa0b3646a
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
 >>>>>>> a130a1dddf05baf57ddaa08bf01c2f6f4110c966
@@ -128,6 +136,14 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <option name="x" value="238" />
+    <option name="y" value="23" />
+=======
+<<<<<<< HEAD
+>>>>>>> 5560c80f32d4839e3c3550519d8ca763c24bd994
     <option name="x" value="25" />
     <option name="y" value="164" />
     <option name="width" value="1284" />
@@ -141,6 +157,7 @@
 =======
     <option name="x" value="245" />
     <option name="y" value="69" />
+>>>>>>> 245e9e19a07156c3e65e0f6fc2c90e9aa0b3646a
     <option name="width" value="1097" />
     <option name="height" value="796" />
   </component>
@@ -236,13 +253,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="245" y="69" width="1097" height="796" extended-state="0" />
+    <frame x="238" y="23" width="1097" height="796" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2497721" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32872927" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32872927" sideWeight="0.5031905" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32872927" sideWeight="0.49680948" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
