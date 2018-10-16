@@ -3,6 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Key_controller.iml" filepath="$PROJECT_DIR$/.idea/Key_controller.iml" />
+<<<<<<< HEAD
+=======
+
+      <module fileurl="file://$PROJECT_DIR$/.idea/key_controller.iml" filepath="$PROJECT_DIR$/.idea/key_controller.iml" />
+
+>>>>>>> 6c790d80ed52db2816dccea210573b655461feb6
     </modules>
   </component>
 </project>

@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="33477f21-cbc7-492c-b24b-83392ab09c48" name="Default" comment="" />
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <list default="true" id="33477f21-cbc7-492c-b24b-83392ab09c48" name="Default" comment="" />
+=======
+<<<<<<< HEAD
+>>>>>>> 5560c80f32d4839e3c3550519d8ca763c24bd994
+    <list default="true" id="3628482d-b3ea-4e9f-9848-ad56c3f66ca2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="33477f21-cbc7-492c-b24b-83392ab09c48" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/KPC.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+>>>>>>> 245e9e19a07156c3e65e0f6fc2c90e9aa0b3646a
+>>>>>>> 6c790d80ed52db2816dccea210573b655461feb6
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -9,6 +28,52 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="FUSProjectUsageTrigger">
+    <session id="332604385">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="21" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="21" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+>>>>>>> 6c790d80ed52db2816dccea210573b655461feb6
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="FSM.py" pinned="false" current-in-tab="false">
@@ -66,6 +131,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/test2.py" />
+=======
+>>>>>>> 6c790d80ed52db2816dccea210573b655461feb6
         <option value="$PROJECT_DIR$/FSM.py" />
         <option value="$PROJECT_DIR$/FSM.py" />
         <option value="$PROJECT_DIR$/KPC.py" />
@@ -73,8 +143,33 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="238" />
     <option name="y" value="23" />
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <option name="x" value="238" />
+    <option name="y" value="23" />
+=======
+<<<<<<< HEAD
+>>>>>>> 5560c80f32d4839e3c3550519d8ca763c24bd994
+    <option name="x" value="25" />
+    <option name="y" value="164" />
+    <option name="width" value="1284" />
+    <option name="height" value="770" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+=======
+    <option name="x" value="245" />
+    <option name="y" value="69" />
+>>>>>>> 245e9e19a07156c3e65e0f6fc2c90e9aa0b3646a
+>>>>>>> 6c790d80ed52db2816dccea210573b655461feb6
     <option name="width" value="1097" />
     <option name="height" value="796" />
   </component>
@@ -100,6 +195,11 @@
         <subPane>
           <expand>
             <path>
+<<<<<<< HEAD
+=======
+              <item name="Key_controller" type="b2602c69:ProjectViewProjectNode" />
+=======
+>>>>>>> 6c790d80ed52db2816dccea210573b655461feb6
               <item name="key_controller" type="b2602c69:ProjectViewProjectNode" />
               <item name="Key_controller" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -107,6 +207,15 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="Course" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+=======
+>>>>>>> 6c790d80ed52db2816dccea210573b655461feb6
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -124,6 +233,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager">
     <configuration default="true" type="tests" factoryName="Doctests">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -215,6 +325,10 @@
       <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
+=======
+  <component name="SvnConfiguration">
+    <configuration />
+>>>>>>> 6c790d80ed52db2816dccea210573b655461feb6
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -250,6 +364,10 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c790d80ed52db2816dccea210573b655461feb6
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
