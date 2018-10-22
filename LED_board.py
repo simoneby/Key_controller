@@ -87,17 +87,26 @@ class LED_board:
                 self.turn_off_led(k)
 
     def wrong_password(self):  # ikke ferdig
-        while True:
+       seconds = 3
+       stop  = time.time() + seconds
+       while True:
             for i in range(0, len(self.pin_led_states)):
                 for pin_index, pin_state in enumerate(self.pin_led_states[i]):
                     self.set_pin(pin_index, pin_state)
                     time.sleep(0.01)
-                    self.set_pin(pin_index, -1)
+                    self.turn_off_led(i)
 
-    # set_pin(0, -1)
-    # set_pin(1, 0)
-    # set_pin(2, 1)
 
-    # while True:
-    #    x = int(raw_input("Pin (0 to 5):"))
-    #   light_led(x)
+    def lars_flash_leds(self, seconds):
+        end_time = time.time() + seconds
+        while time.time() < end_time:
+            second_end_time = time.time() + 0.2
+            while time.time() < second_end_time:
+                for i in range(6):
+                    self.light_led(i)
+            time.sleep(0.2)
+
+
+if __name__ = "__main__":
+    object = LED_board
+    LED_board.lars_flash_light(10)
