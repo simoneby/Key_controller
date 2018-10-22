@@ -39,19 +39,21 @@ class LED_board:
             self.set_pin(pin_index, pin_state)
 
     def turn_off_led(self, led_number):
-        for pin_index, pin_state in enumerate(self.pin_led_states[led_number]):
-            self.set_pin(pin_index, -1)
+        for i in range(0,len(self.pin_led_states)-1):
+            self.set_pin(self.pin_led_states[i][0], -1)
+        #for pin_index, pin_state in enumerate(self.pin_led_states[led_number]):
+         #   self.set_pin(pin_index, -1)
 
     def flash_all_leds(self, seconds):
 
-        stop = time.time() + seconds
+        end_time = time.time() + seconds
 
-        while time.time() < stop:
-            for i in range(0, len(self.pin_led_states) - 1):
-                for pin_index, pin_state in enumerate(self.pin_led_states[i]):
-                    self.set_pin(pin_index, pin_state)
-                    time.sleep(0.01)
-                    self.turn_off_led(i)
+        while time.time() < end_time:
+            second_end_time = time.time() + 0.2
+            while time.time() < second_end_time:
+                for i in range(6):
+                    self.light_led(i)
+            time.sleep(0.5)
 
     def power_up(self):
         for i in range(0, len(self.pin_led_states) - 1):
@@ -67,9 +69,10 @@ class LED_board:
 
     def specified_duration_blink(self, led_to_blink, seconds):
 
-        self.light_led(led_to_blink)
-        time.sleep(seconds)
-        self.turn_off_led(led_to_blink)
+        end_time = time.time() + seconds
+        while time.time() < end_time:
+            self.light_led(led_to_blink)
+            time.sleep(0.4)
 
     def twinkle_all_leds(self, seconds):  # successful login.
         stop = time.time() + seconds
@@ -86,18 +89,29 @@ class LED_board:
                 time.sleep(0.05)
                 self.turn_off_led(k)
 
-    def wrong_password(self):  # ikke ferdig
-        while True:
-            for i in range(0, len(self.pin_led_states)):
-                for pin_index, pin_state in enumerate(self.pin_led_states[i]):
-                    self.set_pin(pin_index, pin_state)
-                    time.sleep(0.01)
-                    self.set_pin(pin_index, -1)
+    def wrong_password(self):  # will flash for 3 seconds if wrong password
 
-    # set_pin(0, -1)
-    # set_pin(1, 0)
-    # set_pin(2, 1)
+       seconds = 3
+       end_time = time.time() + seconds
 
-    # while True:
-    #    x = int(raw_input("Pin (0 to 5):"))
-    #   light_led(x)
+       while time.time() < end_time:
+            second_end_time = time.time() + 0.2
+            while time.time() < second_end_time:
+                for i in range(6):
+                    self.light_led(i)
+            time.sleep(0.2)
+
+
+    def lars_flash_leds(self, seconds):
+        end_time = time.time() + seconds
+        while time.time() < end_time:
+            second_end_time = time.time() + 0.2
+            while time.time() < second_end_time:
+                for i in range(6):
+                    self.light_led(i)
+            time.sleep(0.2)
+
+
+if __name__ = "__main__":
+    object = LED_board
+    LED_board.lars_flash_light(10)
