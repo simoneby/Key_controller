@@ -20,19 +20,14 @@ class KPC:
 
     def __init__(self):
         self.Led_board = LED_board()
-<<<<<<< HEAD
         self.keypad=Keypad()
         self.override_signal=None
         self.CUMP=None
         #skal egentlig lagres i fil
         self.CP=""
         self.new_password=""
-=======
         self.Keypad = Keypad()
-        path = "" #path to filename
-
->>>>>>> 8fe28a6ab79ea97b1d9bd75ff72755afeedb44ba
-
+        self.path = "pw.txt" #path to filename
         self.LEDid=None
         self.light_duration=None
 
@@ -67,6 +62,9 @@ class KPC:
         return self.CUMP
 
     def get_CP(self):
+        pw = open(self.path, "r")
+        self.CP = pw.readline()
+        pw.close()
         return self.CP
 
     # Check that the password just entered via the keypad matches that in the password file.
@@ -91,13 +89,25 @@ class KPC:
         if len(password)<4 or not legal :
             self.Led_board.wrong_password()
         else:
-            self.CP=password
+            self.change_pw(password)
             self.twinkle_leds()
 
-    def light_one_led(self):
+    def change_pw(self, password):
+        password = str(password)
+        pw = open(self.path, "w")
+        pw.write(password)
+        pw.close()
+
+    # ledNr is the Led number, ledDr is the led Duration
+    # midlertidig
+
+    def light_one_led(self, ledNr, ledDr):
+        print("Light number " + str(ledNr + 1) + " for " + str(ledDr) + " milliseconds")
 
     #request the flashing of all LEDs
+    # midlertidig
     def flash_leds(self):
+        print("all lights are flashing")
 
     #request the twinkling of all LEDs.
     def twinkle_leds(self):
