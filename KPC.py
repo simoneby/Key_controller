@@ -1,12 +1,19 @@
 #Key Pad Controller
 
 from LED_board import *
+from Keypad import *
 
 
 class KPC:
 
+
+
+
     def __init__(self):
-        Led_board = LED_board()
+        self.Led_board = LED_board()
+        self.Keypad = Keypad()
+        path = "" #path to filename
+
 
     def init_passcode_entry(self):
 
