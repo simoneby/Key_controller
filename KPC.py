@@ -1,16 +1,16 @@
 #Key Pad Controller
 
 from LED_board import *
-<<<<<<< HEAD
+
 from Key_controller.Keypad import Keypad
 #notes from jen
 #har laget noen gettere, vet ikke om det er behov for det
 #burde i så fall lage noen settere også
 #usikker på om tallene og passordene skal gis i streng eller i tall
 #det står at passordet burde lagres i en fil, vil vi dette?
-=======
+
 from Keypad import *
->>>>>>> 8fe28a6ab79ea97b1d9bd75ff72755afeedb44ba
+
 
 
 class KPC:
@@ -20,14 +20,27 @@ class KPC:
 
     def __init__(self):
         self.Led_board = LED_board()
+<<<<<<< HEAD
+=======
+
+>>>>>>> b291b69f2143e0622c3ecc01bfdaaf2a5e37f4cc
         self.keypad=Keypad()
         self.override_signal=None
         self.CUMP=None
-        #skal egentlig lagres i fil
         self.CP=""
+<<<<<<< HEAD
         self.new_password=""
         self.Keypad = Keypad()
         self.path = "pw.txt" #path to filename
+=======
+       # self.new_password=""
+
+        self.Keypad = Keypad()
+        path = "" #path to filename
+
+
+
+>>>>>>> b291b69f2143e0622c3ecc01bfdaaf2a5e37f4cc
         self.LEDid=None
         self.light_duration=None
 

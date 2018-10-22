@@ -39,7 +39,7 @@ class Keypad:
         return val
 
 
-#må legge inn sikkerhet for å unngå flere signaler her
+#må legge inn sikkerhet for å unngå flere signaler her, eller må man det?
     def get_next_signal(self):
         x=0
         while True:
@@ -54,11 +54,17 @@ class Keypad:
 
 
 
-        print(self.dict[self.pressed])
+
         self.get_symbol()
 
+
+
     def get_symbol(self):
+        #self.returned()
         return self.dict[self.pressed]
+
+    #def returned(self):
+     #   return True
 
 
 
