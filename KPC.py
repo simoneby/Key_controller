@@ -16,31 +16,18 @@ from Keypad import *
 class KPC:
 
 
-
-
     def __init__(self):
         self.Led_board = LED_board()
-<<<<<<< HEAD
-=======
-
->>>>>>> b291b69f2143e0622c3ecc01bfdaaf2a5e37f4cc
         self.keypad=Keypad()
         self.override_signal=None
         self.CUMP=None
         self.CP=""
-<<<<<<< HEAD
         self.new_password=""
         self.Keypad = Keypad()
         self.path = "pw.txt" #path to filename
-=======
        # self.new_password=""
-
         self.Keypad = Keypad()
-        path = "" #path to filename
 
-
-
->>>>>>> b291b69f2143e0622c3ecc01bfdaaf2a5e37f4cc
         self.LEDid=None
         self.light_duration=None
 
