@@ -39,7 +39,7 @@ class Keypad:
         return val
 
 
-
+#må legge inn sikkerhet for å unngå flere signaler her
     def get_next_signal(self):
         x=0
         while True:
