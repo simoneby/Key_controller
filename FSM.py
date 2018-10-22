@@ -6,6 +6,7 @@ class FSM():
     # add a new rule to the end of the FSM’s rule list.
     def add_rule(self):
         return
+
     # query the agent for the next signal.
     def get_next_signal(self):
         return
