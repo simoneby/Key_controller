@@ -4,7 +4,7 @@ import time
 from random import randint
 
 
-class led_board:
+class LED_board:
     # the pins used on the r-pi
     pins = [18, 23, 24]
 
@@ -39,19 +39,19 @@ class led_board:
             self.set_pin(pin_index, pin_state)
 
     def turn_off_led(self, led_number):
-        for pin_index in enumerate(self.pin_led_states[led_number]):
+        for pin_index, pin_state in enumerate(self.pin_led_states[led_number]):
             self.set_pin(pin_index, -1)
 
     def flash_all_leds(self, seconds):
 
-        stop = time.time()+seconds
+        stop = time.time() + seconds
 
-        while time.time()<stop:
-            for i in range(0, len(self.pin_led_states)):
+        while time.time() < stop:
+            for i in range(0, len(self.pin_led_states) - 1):
                 for pin_index, pin_state in enumerate(self.pin_led_states[i]):
                     self.set_pin(pin_index, pin_state)
                     time.sleep(0.01)
-                    self.set_pin(pin_index, -1)
+                    self.turn_off_led(i)
 
     def power_up(self):
         for i in range(0, len(self.pin_led_states) - 1):
@@ -71,20 +71,22 @@ class led_board:
         time.sleep(seconds)
         self.turn_off_led(led_to_blink)
 
-    def successfully_login(self, seconds): #twinkle
-        stop = time.time()+seconds
-        while time.time()<stop:
+    def twinkle_all_leds(self, seconds):  # successful login.
+        stop = time.time() + seconds
 
+        while time.time() < stop:
+            # will first blink 0, 2, 4
             for i in range(0, len(self.pin_led_states) - 1, 2):
                 self.light_led(i)
                 time.sleep(0.05)
                 self.turn_off_led(i)
+            # then 5, 3, 1
             for k in range(len(self.pin_led_states) - 1, 0, -2):
                 self.light_led(k)
                 time.sleep(0.05)
                 self.turn_off_led(k)
 
-    def wrong_password(self): #ikke ferdig
+    def wrong_password(self):  # ikke ferdig
         while True:
             for i in range(0, len(self.pin_led_states)):
                 for pin_index, pin_state in enumerate(self.pin_led_states[i]):
