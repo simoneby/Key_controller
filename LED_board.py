@@ -15,7 +15,7 @@ class LED_board:
         [-1, 1, 0],  # 2
         [-1, 0, 1],  # 3
         [1, -1, 0],  # 4
-        [0, -1, 1]  # 5
+        [0, -1, 1]   # 5
     ]
 
     def setup(self, pins, pin_led_states):

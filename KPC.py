@@ -2,7 +2,7 @@
 
 from LED_board import *
 
-from Key_controller.Keypad import Keypad
+#from Key_controller.Keypad import Keypad
 #notes from jen
 #har laget noen gettere, vet ikke om det er behov for det
 #burde i så fall lage noen settere også
@@ -101,8 +101,13 @@ class KPC:
     # ledNr is the Led number, ledDr is the led Duration
     # midlertidig
 
+
+
+
+
     def light_one_led(self, ledNr, ledDr):
         print("Light number " + str(ledNr + 1) + " for " + str(ledDr) + " milliseconds")
+
 
     #request the flashing of all LEDs
     # midlertidig
@@ -119,3 +124,12 @@ class KPC:
         self.Led_board.power_down(self)
 
 
+def signal_is_digit(signal): return 48 <= ord(signal) <= 57
+def signal_is_any(signal): return signal_is_digit(signal) or signal == "*" or signal == "#"
+def signal_is_led(signal): return 48 <= ord(signal) <= 53
+
+print(signal_is_any("3"))
+print(signal_is_any("%"))
+print(signal_is_any("#"))
+print(signal_is_digit("9"))
+print(signal_is_led("3"))

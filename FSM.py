@@ -2,7 +2,6 @@
 
 class FSM():
 
-
     # add a new rule to the end of the FSM’s rule list.
     def add_rule(self):
         return
