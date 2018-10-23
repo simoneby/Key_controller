@@ -6,71 +6,67 @@ from LED_board import *
 
 from Keypad import *
 
+# Begynner bakerst
+
+signals = ["*", "1", "3", "3", "8","N", "*", "1", "3", "3", "4", "*", "Y", "*","4", "3", "2", "1", "#"]
+
 class KPC:
 
+    def length_of_signals(self):
+        return len(signals)
 
     def __init__(self):
         self.Led_board = LED_board()
         self.keypad=Keypad()
-        self.override_signal=None
-        self.CUMP=None
-        self.signals = ["4", "3", "2", "1", "#"]
-        self.CP=""
-        self.new_pas=None
-        self.new_pas2=None
-        self.path = "pw.txt" #path to filename
-        self.attempt=None
-
-        self.LEDid=None
-        self.light_duration=None
-
+        self.path = "pw.txt"  # path to filename
         # setter opp keypad kun en gang
         self.keypad.setup()
 
+        self.override_signal=None
+        self.attempt=""
+        self.last_signal=None
+        self.LEDid=None
+        self.light_duration=None
+        self.Ldur=""
+        self.CP = None
+        self.new_pw = ""
+        self.retype_new_pw = ""
 
-    def get_CUMP(self):
-        return self.CUMP
-
-
-    def reset_CUMP(self):
-        self.CUMP=None
-
-    #legger til underveis,
-   # def add__to_CUMP(self,number):
-   #     self.CUMP+=number
-
-    def get_new_pas(self):
-        return self.new_pas
-
-    def get_new_pas2(self):
-        return self.new_pas2
-
-    def set_new_pas(self,pas):
-        self.new_pas=pas
-
-    def set_new_pas2(self,pas):
-        self.new_pas2=pas
 
     def set_override_signal(self,c):
         self.override_signal=c
 
+    def go_back_to_start(self):
+        self.reset_agent()
+        print("-> exiting...")
+
+    def go_back_to_active(self):
+        self.reset_agent()
+        print("-> didnt understand... going back to active")
+
+    def go_to_active(self):
+        self.reset_agent()
+        print("-> going to active mode")
 
     def get_override_signal(self):
         return self.override_signal
 
 
     def does_allmost_nothing(self):
-        print("did almost something")
-        return
+        print(" --- didnt do anything -- ")
 
 
     def pw_attempt(self):
-        symbol = self.get_next_signal()
-        while signal_is_digit(symbol):
-            self.attempt += symbol
-            symbol = self.get_next_signal()
+        self.attempt = self.attempt + self.last_signal
         return self.attempt
 
+    def new_pw(self):
+        self.new_pw = self.new_pw + self.last_signal
+        return self.new_pw
+
+    def retype_new_pw(self):
+        self.retype_new_pw = self.retype_new_pw + self.last_signal
+        return self.retype_new_pw
 
     def get_CP(self):
         pw = open(self.path, "r")
@@ -81,30 +77,42 @@ class KPC:
     # Clear the passcode-buffer and initiate a ”power up” lighting sequence on the LED Board.
     # This should be done when the user first presses the keypad.
     # starter ved å trykke på firkant,
-    def init_passcode_entry(self):
-        self.reset_CUMP()
-        self.set_override_signal(None)
-        self.Led_board.power_up()
 
+    def init_passcode_entry(self):
+        self.Led_board.power_up()
+        print("Led board powered up")
+
+    def init_new_passcode_entry(self):
+        print("Ready to type in new password")
+
+    def init_retype_passcode_entry(self):
+        print("Ready to retype new password")
 
 
     def reset_agent(self):
-        self.reset_CUMP()
-        self.set_override_signal(None)
-        self.set_new_pas(None)
-        self.set_new_pas2(None)
-        self.LEDid=None
-        self.light_duration=None
+        self.override_signal = None
+        self.attempt = ""
+        self.last_signal = None
+        self.LEDid = None
+        self.light_duration = None
+        self.Ldur = ""
+        self.retype_new_pw = ""
+        self.new_pw = ""
 
     def refresh_agent(self):
-        self.set_override_signal(None)
-        self.set_new_pas(None)
-        self.set_new_pas2(None)
-        self.LEDid=None
-        self.light_duration=None
+        self.override_signal = None
+        self.attempt = ""
+        self.last_signal = None
+        self.LEDid = None
+        self.light_duration = None
+        self.Ldur = ""
 
     def get_next_signal(self):
-        return self.signals.pop()
+        while len(signals) > 0:
+            self.last_signal = signals.pop()
+            print("next signal: ")
+            print(self.last_signal)
+            return self.last_signal
 
     # Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key.
     def get_next_signal1(self):
@@ -116,58 +124,47 @@ class KPC:
         return str(signal)
 
 
-    #def does_nothing():
-     #   return
-
     # Check that the password just entered via the keypad matches that in the password file.
     # Store the result (Y or N) in the override-signal.
     # initiate the appropriate lighting pattern for login success or failure.
     def verify_login(self):
-        if self.pw_attempt() == self.get_CP():
+        if self.attempt == self.get_CP():
             self.set_override_signal('Y')
-            self.twinkle_leds()
+            #self.twinkle_leds()
+            print("correct pw, lights are twinkling")
         else:
             self.set_override_signal('N')
-            self.Led_board.wrong_password()
-
-    #trengs denne eller kan vi bruke get-next-signal?
-    #tror kanskje det er bedre å lage dette i FSM
-    def enter_new_password2(self):
-      #  if self.validate_passcode_change():
-            self.set_new_pas2(self.pw_attempt())
-
-    def enter_new_password(self):
-        self.set_new_pas(self.pw_attempt())
+            #self.Led_board.wrong_password()
+            print("incorrect pw, lights are blinking boo")
+        self.attempt = ""
 
 
     #Check that the new password is legal. If so, write the new password in the password file.
     # A legal password should be at least 4 digits long and should contain no symbols other than the digits 0-9.
     # denne skal sjekkes to ganger?
+
     def validate_passcode_change(self):
-        legal=False
-        for digit in self.get_new_pas():
-                legal=signal_is_digit(digit)
-
-        if len(self.get_new_pas())<4 or not legal :
-
+        if len(self.new_pw) < 5:
             self.set_override_signal('N')
-            return False
-
+            print("new password is not strong enough")
         else:
+            print("new password is strong enough")
             self.set_override_signal('Y')
-            return True
+            self.reset_agent()
 
 
     def verify_password(self):
-        if self.get_new_pas()==self.get_new_pas2():
-            self.set_override_signal('Y')
-            self.change_pw(self.get_new_pas2())
-            self.twinkle_leds()
+        if self.retype_new_pw==self.new_pw:
+            self.set_override_signal("Y")
+            print("The password is changed")
+            self.change_pw(self.new_pw)
+            #self.twinkle_leds()
 
         else:
-            self.set_override_signal('N')
+            self.set_override_signal("N")
+            print("Wrong retyping of password, is not changed")
             self.Led_board.wrong_password()
-
+        self.reset_agent()
 
     def change_pw(self, password):
         password = str(password)
@@ -179,10 +176,10 @@ class KPC:
     # midlertidig
 
     def light_one_led(self):
-        print("Light number " + str(self.LEDid + 1) + " for " + str(self.light_duration) + " milliseconds")
+        print("Light number " + str(self.LEDid + 1) + " ligts up for " + str(self.light_duration) + " seconds")
 
     def set_LED(self):
-        self.LEDid=int(self.get_next_signal())
+        self.LEDid = int(self.last_signal)
 
     def set_duration(self):
         sym=self.get_next_signal()
@@ -190,6 +187,16 @@ class KPC:
             self.light_duration+=sym
             sym=self.get_next_signal()
         self.light_duration = int(sym)
+
+    def record_duration(self):
+        self.Ldur = self.Ldur + self.last_signal
+
+    def set_duration(self):
+        self.light_duration = int(self.Ldur)
+        self.light_one_led()
+        self.Ldur = ""
+        self.light_duration = None
+        self.LEDid = None
 
 
     #request the flashing of all LEDs
@@ -199,6 +206,7 @@ class KPC:
 
     #request the twinkling of all LEDs.
     def twinkle_leds(self):
+        print("all lights are twinkling")
         self.Led_board.twinkle_all_leds(self)
 
     #initiate the ”power down” lighting sequence.
@@ -206,7 +214,7 @@ class KPC:
     def exit_action(self):
         self.reset_agent()
         self.Led_board.power_down(self)
-
+        print("exiting action")
 
 
 
@@ -218,9 +226,3 @@ def signal_is_led(signal): return 48 <= ord(signal) <= 53
 def is_hashtag(signal): return signal == "#"
 def is_star(signal): return signal == "*"
 
-kpc = KPC()
-print(kpc.get_next_signal())
-print(kpc.get_next_signal())
-print(kpc.get_next_signal())
-print(kpc.get_next_signal())
-print(kpc.get_next_signal())

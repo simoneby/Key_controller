@@ -4,11 +4,12 @@ class Rule:
 
     # symbol er det eller de symbolene som gjør at man går til neste state
     # action er handlingen som utføres når regelen fyres
-    def __init__(self, state1, state2, symbol, action):
+    def __init__(self, state1, state2, symbol, action, kpc):
         self.state1 = state1
         self.state2 = state2
         self.allowed_symbols = symbol
         self.action = action
+        self.kpc = kpc
 
     def match(self, current_state, symbol):
         if current_state == self.state1 and self.symbol_match(symbol):
@@ -27,13 +28,18 @@ class Rule:
             return "#" == symbol
         elif self.allowed_symbols == "*":
             return "*" == symbol
+        elif self.allowed_symbols == "Y":
+            return "Y" == symbol
+        elif self.allowed_symbols == "N":
+            return "N" == symbol
 
 
     def get_next_state(self):
         return self.state2
 
     def do_action(self):
-        self.action()
+        self.action(self.kpc)
+
 
     def show_rule(self):
         print("This rule takes you from state " + self.state1 + " to " + self.state2 + ". By symbols of type " + "'" + self.allowed_symbols + "'")
