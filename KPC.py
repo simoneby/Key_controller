@@ -11,8 +11,6 @@ from Key_controller.Keypad import Keypad
 
 from Keypad import *
 
-
-
 class KPC:
 
 
@@ -39,8 +37,6 @@ class KPC:
     def init_passcode_entry(self):
         self.CUMP=None
         self.Led_board.power_up()
-
-
 
     def get_override_signal(self):
         return self.override_signal
@@ -101,10 +97,6 @@ class KPC:
     # ledNr is the Led number, ledDr is the led Duration
     # midlertidig
 
-
-
-
-
     def light_one_led(self, ledNr, ledDr):
         print("Light number " + str(ledNr + 1) + " for " + str(ledDr) + " milliseconds")
 
@@ -122,5 +114,9 @@ class KPC:
 
     def exit_action(self):
         self.Led_board.power_down(self)
+
+    #def reset(self):
+
+
 
 
