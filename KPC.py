@@ -20,7 +20,8 @@ class KPC:
         self.override_signal=None
         self.CUMP=None
         self.CP=""
-        self.new_password=""
+        self.new_pas=""
+        self.new_pas2=""
         self.path = "pw.txt" #path to filename
 
         self.LEDid=None
@@ -35,19 +36,28 @@ class KPC:
     def init_passcode_entry(self):
         if self.keypad.get_next_signal()=='#':
             self.CUMP=None
+            self.CUMP_OLD=None
             self.set_override_signal(None)
             self.Led_board.power_up()
+
+<<<<<<< HEAD
 
     def set_override_signal(self,c):
         self.override_signal=c
 
+=======
+    def set_override_signal(self,c):
+        self.override_signal=c
 
+
+>>>>>>> 6bee2fc75349a92396872f60f4494196a3c197dd
     def get_override_signal(self):
         return self.override_signal
 
     def reset_agent(self):
         self.CUMP=None
         self.set_override_signal(None)
+
 
 
     # Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key.
@@ -68,14 +78,35 @@ class KPC:
     def get_CUMP(self):
         return str(self.CUMP)
 
+<<<<<<< HEAD
+    def get_new_pas(self):
+        return self.new_pas
+
+    def get_new_pas2(self):
+        return self.new_pas2
+
+    def set_new_pas(self,pas):
+        self.new_pas=pas
+
+    def set_new_pas2(self,pas):
+        self.new_pas2=pas
+=======
     def does_nothing():
         return
+>>>>>>> 6bee2fc75349a92396872f60f4494196a3c197dd
 
     def get_CP(self):
         pw = open(self.path, "r")
         self.CP = pw.readline()
         pw.close()
         return self.CP
+
+    def enter_new_password(self):
+        pas=None
+        np=self.keypad.get_next_signal()
+        while np!='*':
+            pas+=np
+        self.set_new_pas(pas)
 
     # Check that the password just entered via the keypad matches that in the password file.
     # Store the result (Y or N) in the override-signal.
@@ -87,20 +118,50 @@ class KPC:
         else:
             self.set_override_signal('N')
             self.Led_board.wrong_password()
+            self.reset_agent()
 
     #Check that the new password is legal. If so, write the new password in the password file.
     # A legal password should be at least 4 digits long and should contain no symbols other than the digits 0-9.
     # denne skal sjekkes to ganger?
-    def validate_passcode_change(self,password):
+    def validate_passcode_change(self):
         legal=False
-        for digit in password:
-            if digit>=0 or digit<=9:
-                legal=True
-        if len(password)<4 or not legal :
-            self.Led_board.wrong_password()
+        for digit in self.get_new_pas():
+                legal=signal_is_digit(digit)
+
+        if len(self.get_new_pas())<4 or not legal :
+            self.refresh_agent()
+            self.set_override_signal('N')
+            return False
+
         else:
-            self.change_pw(password)
+            self.set_override_signal('Y')
+            return True
+
+    def enter_new_password2(self):
+        if self.validate_passcode_change():
+            pas=None
+            np=self.keypad.get_next_signal()
+            while np!='*':
+                pas+=np
+                self.set_new_pas2(pas)
+
+    def verify_password(self):
+        if self.get_new_pas()==self.get_new_pas2():
+            self.set_override_signal('Y')
+            self.change_pw(self.get_new_pas2())
             self.twinkle_leds()
+            self.refresh_agent()
+        else:
+            self.set_override_signal('N')
+            self.Led_board.wrong_password()
+            #skal tilbake til s-read3 her?
+
+
+
+    def refresh_agent(self):
+        self.set_override_signal(None)
+        self.new_pas=None
+        self.new_pas2=None
 
     def change_pw(self, password):
         password = str(password)
