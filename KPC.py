@@ -73,8 +73,6 @@ class KPC:
     # This should be done when the user first presses the keypad.
     # starter ved å trykke på firkant,
     def init_passcode_entry(self):
-        #skal ifen være i fsm kanskje?
-        #if self.keypad.get_next_signal()=='#':
             self.reset_CUMP()
             self.set_override_signal(None)
             self.Led_board.power_up()
