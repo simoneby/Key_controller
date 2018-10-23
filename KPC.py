@@ -3,11 +3,6 @@
 from LED_board import *
 
 #from Key_controller.Keypad import Keypad
-#notes from jen
-#har laget noen gettere, vet ikke om det er behov for det
-#burde i så fall lage noen settere også
-#usikker på om tallene og passordene skal gis i streng eller i tall
-#det står at passordet burde lagres i en fil, vil vi dette?
 
 from Keypad import *
 
@@ -29,24 +24,6 @@ class KPC:
 
         # setter opp keypad kun en gang
         self.keypad.setup()
-
-<<<<<<< HEAD
-=======
-    # Clear the passcode-buffer and initiate a ”power up” lighting sequence on the LED Board.
-    # This should be done when the user first presses the keypad.
-    # starter ved å trykke på firkant
-    def init_passcode_entry(self):
-        if self.keypad.get_next_signal()=='#':
-            self.CUMP=None
-            self.set_override_signal(None)
-            self.Led_board.power_up()
-
-<<<<<<< HEAD
-
-=======
->>>>>>> fa9f6da7a839c2e3fa7380c5648322997b55a997
->>>>>>> a091e3294de19e89d569590c9302fc413434b200
-
 
 
     def get_CUMP(self):
@@ -79,13 +56,12 @@ class KPC:
     def get_override_signal(self):
         return self.override_signal
 
-<<<<<<< HEAD
-    def does_allmost_nothing():
+
+    def does_allmost_nothing(self):
         print("did almost something")
         return
 
-=======
->>>>>>> fa9f6da7a839c2e3fa7380c5648322997b55a997
+
 
     def get_CP(self):
         pw = open(self.path, "r")
