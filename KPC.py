@@ -23,10 +23,7 @@ class KPC:
         self.CUMP=None
         self.CP=""
         self.new_password=""
-        self.Keypad = Keypad()
         self.path = "pw.txt" #path to filename
-       # self.new_password=""
-        self.Keypad = Keypad()
 
         self.LEDid=None
         self.light_duration=None
@@ -40,6 +37,8 @@ class KPC:
         self.CUMP=None
         self.Led_board.power_up()
 
+    def set_override_signal(self,c):
+        self.override_signal=c
 
 
     def get_override_signal(self):
@@ -52,6 +51,7 @@ class KPC:
              signal=self.keypad.get_next_signal()
         else:
             signal=self.get_override_signal()
+        return signal
 
     #tall eller streng?
     #får inn hele passordet eller legger til underveis?
@@ -72,15 +72,15 @@ class KPC:
     # initiate the appropriate lighting pattern for login success or failure.
     def verify_login(self):
         if self.get_CUMP()==self.get_CP():
-            self.override_signal='Y'
+            self.set_override_signal('Y')
             self.twinkle_leds()
         else:
-            self.override_signal='N'
+            self.set_override_signal('N')
             self.Led_board.wrong_password()
 
     #Check that the new password is legal. If so, write the new password in the password file.
     # A legal password should be at least 4 digits long and should contain no symbols other than the digits 0-9.
-
+    # denne skal sjekkes to ganger?
     def validate_passcode_change(self,password):
         legal=False
         for digit in password:
