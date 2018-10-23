@@ -2,7 +2,7 @@
 
 from LED_board import *
 
-from Key_controller.Keypad import Keypad
+#from Key_controller.Keypad import Keypad
 #notes from jen
 #har laget noen gettere, vet ikke om det er behov for det
 #burde i så fall lage noen settere også
@@ -21,10 +21,7 @@ class KPC:
         self.CUMP=None
         self.CP=""
         self.new_password=""
-        self.Keypad = Keypad()
         self.path = "pw.txt" #path to filename
-       # self.new_password=""
-        self.Keypad = Keypad()
 
         self.LEDid=None
         self.light_duration=None
@@ -38,6 +35,13 @@ class KPC:
         self.CUMP=None
         self.Led_board.power_up()
 
+<<<<<<< HEAD
+=======
+    def set_override_signal(self,c):
+        self.override_signal=c
+
+
+>>>>>>> 9324f839d265eea08765afd60ea2b540d95fc23f
     def get_override_signal(self):
         return self.override_signal
 
@@ -48,6 +52,7 @@ class KPC:
              signal=self.keypad.get_next_signal()
         else:
             signal=self.get_override_signal()
+        return signal
 
     #tall eller streng?
     #får inn hele passordet eller legger til underveis?
@@ -68,15 +73,15 @@ class KPC:
     # initiate the appropriate lighting pattern for login success or failure.
     def verify_login(self):
         if self.get_CUMP()==self.get_CP():
-            self.override_signal='Y'
+            self.set_override_signal('Y')
             self.twinkle_leds()
         else:
-            self.override_signal='N'
+            self.set_override_signal('N')
             self.Led_board.wrong_password()
 
     #Check that the new password is legal. If so, write the new password in the password file.
     # A legal password should be at least 4 digits long and should contain no symbols other than the digits 0-9.
-
+    # denne skal sjekkes to ganger?
     def validate_passcode_change(self,password):
         legal=False
         for digit in password:
@@ -120,3 +125,12 @@ class KPC:
 
 
 
+def signal_is_digit(signal): return 48 <= ord(signal) <= 57
+def signal_is_any(signal): return signal_is_digit(signal) or signal == "*" or signal == "#"
+def signal_is_led(signal): return 48 <= ord(signal) <= 53
+
+print(signal_is_any("3"))
+print(signal_is_any("%"))
+print(signal_is_any("#"))
+print(signal_is_digit("9"))
+print(signal_is_led("3"))
