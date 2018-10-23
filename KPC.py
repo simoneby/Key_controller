@@ -14,6 +14,7 @@ class KPC:
         self.keypad=Keypad()
         self.override_signal=None
         self.CUMP=None
+        self.signals = ["4", "3", "2", "1", "#"]
         self.CP=""
         self.new_pas=None
         self.new_pas2=None
@@ -81,9 +82,9 @@ class KPC:
     # This should be done when the user first presses the keypad.
     # starter ved å trykke på firkant,
     def init_passcode_entry(self):
-            self.reset_CUMP()
-            self.set_override_signal(None)
-            self.Led_board.power_up()
+        self.reset_CUMP()
+        self.set_override_signal(None)
+        self.Led_board.power_up()
 
 
 
@@ -102,8 +103,11 @@ class KPC:
         self.LEDid=None
         self.light_duration=None
 
-    # Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key.
     def get_next_signal(self):
+        return self.signals.pop()
+
+    # Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key.
+    def get_next_signal1(self):
         signal=None
         if self.get_override_signal()==None:
              signal=self.keypad.get_next_signal()
@@ -183,17 +187,18 @@ class KPC:
     # ledNr is the Led number, ledDr is the led Duration
     # midlertidig
 
-    def light_one_led(self, ledNr, ledDr):
-        print("Light number " + str(ledNr + 1) + " for " + str(ledDr) + " milliseconds")
+    def light_one_led(self):
+        print("Light number " + str(self.LEDid + 1) + " for " + str(self.light_duration) + " milliseconds")
 
     def set_LED(self):
-        self.LEDid=self.get_next_signal()
+        self.LEDid=int(self.get_next_signal())
 
     def set_duration(self):
         sym=self.get_next_signal()
         while signal_is_digit(sym):
             self.light_duration+=sym
             sym=self.get_next_signal()
+        self.light_duration = int(sym)
 
 
     #request the flashing of all LEDs
@@ -222,4 +227,9 @@ def signal_is_led(signal): return 48 <= ord(signal) <= 53
 def is_hashtag(signal): return signal == "#"
 def is_star(signal): return signal == "*"
 
-
+kpc = KPC()
+print(kpc.get_next_signal())
+print(kpc.get_next_signal())
+print(kpc.get_next_signal())
+print(kpc.get_next_signal())
+print(kpc.get_next_signal())

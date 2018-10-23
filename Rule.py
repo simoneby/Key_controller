@@ -21,7 +21,7 @@ class Rule:
             return signal_is_any(symbol)
         elif self.allowed_symbols == "digits":
             return signal_is_digit(symbol)
-        elif self.allowed_symbols(symbol) == "Lid":
+        elif self.allowed_symbols == "Lid":
             return signal_is_led(symbol)
         elif self.allowed_symbols == "#":
             return "#" == symbol
