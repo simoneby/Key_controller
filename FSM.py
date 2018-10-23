@@ -2,8 +2,9 @@
 from Rule import*
 from KPC import*
 
-class FSM():
+class FSM:
 
+    # bruker ikke denne listen til noe, bare for å holde oversikt
     possible_states = ["S_init", "S_Read", "S-verify", "S-active",
                        "S-Read2", "S-Validate", "S-Rule3",
                        "S-verify-new-pw", "S-Lid", "S-time", "S-logout"]
@@ -36,4 +37,5 @@ class FSM():
         return
 
 fsm = FSM()
-fsm.add_rule("S-init", "S-read", signal_is_any(), KPC.does_nothing())
+fsm.add_rule("S-init", "S-read", "any", KPC.does_nothing())
+

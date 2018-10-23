@@ -3,7 +3,7 @@
 import RPi.GPIO as GPIO
 import time
 class Keypad:
-    #skal tallene gis ut som streng eller tall?
+    #skal tallene gis ut som streng eller tall? Streng
 
 
     def __init__(self):
