@@ -36,14 +36,14 @@ class KPC:
     def init_passcode_entry(self):
         if self.keypad.get_next_signal()=='#':
             self.CUMP=None
-            self.CUMP_OLD=None
             self.set_override_signal(None)
             self.Led_board.power_up()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fa9f6da7a839c2e3fa7380c5648322997b55a997
 
-    def set_override_signal(self,c):
-        self.override_signal=c
 
     def set_override_signal(self,c):
         self.override_signal=c
@@ -92,10 +92,13 @@ class KPC:
     def does_nothing():
         return
 
+<<<<<<< HEAD
     def does_allmost_nothing():
         print("did almost something")
         return
 
+=======
+>>>>>>> fa9f6da7a839c2e3fa7380c5648322997b55a997
 
     def get_CP(self):
         pw = open(self.path, "r")
@@ -190,9 +193,10 @@ class KPC:
     #initiate the ”power down” lighting sequence.
 
     def exit_action(self):
+        self.reset_agent()
         self.Led_board.power_down(self)
 
-    #def reset(self):
+
 
 
 
