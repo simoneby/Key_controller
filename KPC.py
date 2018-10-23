@@ -38,13 +38,10 @@ class KPC:
             self.set_override_signal(None)
             self.Led_board.power_up()
 
-<<<<<<< HEAD
-=======
     def set_override_signal(self,c):
         self.override_signal=c
 
 
->>>>>>> 9324f839d265eea08765afd60ea2b540d95fc23f
     def get_override_signal(self):
         return self.override_signal
 
@@ -70,6 +67,9 @@ class KPC:
     #parser til string her
     def get_CUMP(self):
         return str(self.CUMP)
+
+    def does_nothing():
+        return
 
     def get_CP(self):
         pw = open(self.path, "r")

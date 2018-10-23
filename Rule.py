@@ -12,9 +12,9 @@ class Rule:
         self.action = action
 
     def match(self, current_state, symbol):
-        if current_state == self.state1 and (self.allowed_symbols == symbol or self.allowed_symbols(symbol) == True)
+        if current_state == self.state1 and (self.allowed_symbols == symbol or self.allowed_symbols(symbol) == True):
             return True
-        else
+        else:
             return False
 
     def get_next_state(self):
