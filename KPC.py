@@ -18,6 +18,7 @@ class KPC:
         self.new_pas=None
         self.new_pas2=None
         self.path = "pw.txt" #path to filename
+        self.attempt=None
 
         self.LEDid=None
         self.light_duration=None
@@ -61,6 +62,13 @@ class KPC:
         print("did almost something")
         return
 
+
+    def pw_attempt(self):
+        symbol = self.get_next_signal()
+        while signal_is_digit(symbol):
+            self.attempt += symbol
+            symbol = self.get_next_signal()
+        return self.attempt
 
 
     def get_CP(self):
@@ -109,7 +117,7 @@ class KPC:
     # Store the result (Y or N) in the override-signal.
     # initiate the appropriate lighting pattern for login success or failure.
     def verify_login(self):
-        if self.get_CUMP()==self.get_CP():
+        if self.pw_attempt() == self.get_CP():
             self.set_override_signal('Y')
             self.twinkle_leds()
         else:

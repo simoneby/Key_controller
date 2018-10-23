@@ -39,7 +39,7 @@ class FSM:
 
     # use the consequent of a rule to a) set the next state of the FSM, and b) call the appropriate agent action method.
     def fire_rule(self, rule):
-        #rule.do_action()
+        rule.do_action()
         return
 
     # begin in the FSM’s default initial state and then repeatedly call get next signal and run rules until the FSM enters its default final state.
@@ -47,5 +47,36 @@ class FSM:
         return
 
 fsm = FSM()
-fsm.add_rule("S-init", "S-read", "any", KPC.does_allmost_nothing())
+fsm.add_rule("S-init", "S-read", "any", KPC.init_passcode_entry)
+fsm.add_rule("S-read", "S-read", "digits", KPC.pw_attempt)
+fsm.add_rule("S-read", "S-verify", "*", KPC.verify_login)
+fsm.add_rule("S-read", "S-init", "#", KPC.does_allmost_nothing)
+fsm.add_rule("S-verify", "S-active", "Y", ??)
+fsm.add_rule("S-verify", "S-init", "any", KPC.does_allmost_nothing)
+fsm.add_rule("S-active", "S-logout", "#", ??)
+fsm.add_rule("S-logout", "S-init", "#", ??)
+fsm.add_rule("S-logout", "S-active", "any", ??)
+fsm.add_rule("S-active", "S-lid", "Lid", ??)
+fsm.add_rule("S-lid", "S-time", ??, ??)
+fsm.add_rule("S-lid", "S-active", "any", ??)
+fsm.add_rule("S-time", "S-active", "*", ??) #gjør action her
+fsm.add_rule("S-time", "S-active", "any", KPC.does_allmost_nothing)
+fsm.add_rule("S-active", "S-read2", "*", ??)
+fsm.add_rule("S-read2", "S-read2", "digits", ??)
+fsm.add_rule("S-read2", "S-validate", "*", ??)
+fsm.add_rule("S-read2", "S-active", "any", ??)
+fsm.add_rule("S-validate", "S-read3", "Y", ??)
+fsm.add_rule("S-validate", "S-active", "any", KPC.does_allmost_nothing)
+fsm.add_rule("S-read3", )
+
+
+
+
+
+
+
+
+
+
+fsm.run_rules("S-init", "3")
 
