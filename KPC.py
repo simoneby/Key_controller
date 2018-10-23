@@ -193,6 +193,8 @@ class KPC:
 def signal_is_digit(signal): return 48 <= ord(signal) <= 57
 def signal_is_any(signal): return signal_is_digit(signal) or signal == "*" or signal == "#"
 def signal_is_led(signal): return 48 <= ord(signal) <= 53
+def is_hashtag(signal): return signal == "#"
+def is_star(signal): return signal == "*"
 
 print(signal_is_any("3"))
 print(signal_is_any("%"))
