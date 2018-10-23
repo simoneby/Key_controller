@@ -40,10 +40,17 @@ class KPC:
             self.set_override_signal(None)
             self.Led_board.power_up()
 
+<<<<<<< HEAD
 
     def set_override_signal(self,c):
         self.override_signal=c
 
+=======
+    def set_override_signal(self,c):
+        self.override_signal=c
+
+
+>>>>>>> 6bee2fc75349a92396872f60f4494196a3c197dd
     def get_override_signal(self):
         return self.override_signal
 
@@ -71,6 +78,7 @@ class KPC:
     def get_CUMP(self):
         return str(self.CUMP)
 
+<<<<<<< HEAD
     def get_new_pas(self):
         return self.new_pas
 
@@ -82,6 +90,10 @@ class KPC:
 
     def set_new_pas2(self,pas):
         self.new_pas2=pas
+=======
+    def does_nothing():
+        return
+>>>>>>> 6bee2fc75349a92396872f60f4494196a3c197dd
 
     def get_CP(self):
         pw = open(self.path, "r")

@@ -112,6 +112,6 @@ class LED_board:
             time.sleep(0.2)
 
 
-if __name__ = "__main__":
-    object = LED_board
-    LED_board.lars_flash_light(10)
+#if __name__ = "__main__":
+#    object = LED_board
+#    LED_board.lars_flash_light(10)
