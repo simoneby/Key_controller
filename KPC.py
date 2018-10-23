@@ -34,8 +34,8 @@ class KPC:
         self.CUMP=None
 
     #legger til underveis,
-    def add__to_CUMP(self,number):
-        self.CUMP+=number
+   # def add__to_CUMP(self,number):
+   #     self.CUMP+=number
 
     def get_new_pas(self):
         return self.new_pas
@@ -84,11 +84,15 @@ class KPC:
         self.set_override_signal(None)
         self.set_new_pas(None)
         self.set_new_pas2(None)
+        self.LEDid=None
+        self.light_duration=None
 
     def refresh_agent(self):
         self.set_override_signal(None)
         self.set_new_pas(None)
         self.set_new_pas2(None)
+        self.LEDid=None
+        self.light_duration=None
 
     # Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key.
     def get_next_signal(self):
@@ -173,6 +177,15 @@ class KPC:
 
     def light_one_led(self, ledNr, ledDr):
         print("Light number " + str(ledNr + 1) + " for " + str(ledDr) + " milliseconds")
+
+    def set_LED(self):
+        self.LEDid=self.get_next_signal()
+
+    def set_duration(self):
+        sym=self.get_next_signal()
+        while signal_is_digit(sym):
+            self.light_duration+=sym
+            sym=self.get_next_signal()
 
 
     #request the flashing of all LEDs
