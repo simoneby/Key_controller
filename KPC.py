@@ -3,11 +3,6 @@
 from LED_board import *
 
 #from Key_controller.Keypad import Keypad
-#notes from jen
-#har laget noen gettere, vet ikke om det er behov for det
-#burde i så fall lage noen settere også
-#usikker på om tallene og passordene skal gis i streng eller i tall
-#det står at passordet burde lagres i en fil, vil vi dette?
 
 from Keypad import *
 
@@ -19,10 +14,12 @@ class KPC:
         self.keypad=Keypad()
         self.override_signal=None
         self.CUMP=None
+        self.signals = ["4", "3", "2", "1", "#"]
         self.CP=""
-        self.new_pas=""
-        self.new_pas2=""
+        self.new_pas=None
+        self.new_pas2=None
         self.path = "pw.txt" #path to filename
+        self.attempt=None
 
         self.LEDid=None
         self.light_duration=None
@@ -30,48 +27,17 @@ class KPC:
         # setter opp keypad kun en gang
         self.keypad.setup()
 
-    # Clear the passcode-buffer and initiate a ”power up” lighting sequence on the LED Board.
-    # This should be done when the user first presses the keypad.
-    # starter ved å trykke på firkant
-    def init_passcode_entry(self):
-        if self.keypad.get_next_signal()=='#':
-            self.CUMP=None
-            self.set_override_signal(None)
-            self.Led_board.power_up()
 
-
-
-    def set_override_signal(self,c):
-        self.override_signal=c
-
-
-    def get_override_signal(self):
-        return self.override_signal
-
-    def reset_agent(self):
-        self.CUMP=None
-        self.set_override_signal(None)
-
-
-
-    # Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key.
-    def get_next_signal(self):
-        signal=None
-        if self.get_override_signal()==None:
-             signal=self.keypad.get_next_signal()
-        else:
-            signal=self.get_override_signal()
-        return signal
-
-
-    #får inn hele passordet eller legger til underveis?
-    def store_CUMP(self,number):
-        self.CUMP+=number
-
-    #parser til string her
     def get_CUMP(self):
-        return str(self.CUMP)
+        return self.CUMP
 
+
+    def reset_CUMP(self):
+        self.CUMP=None
+
+    #legger til underveis,
+   # def add__to_CUMP(self,number):
+   #     self.CUMP+=number
 
     def get_new_pas(self):
         return self.new_pas
@@ -85,8 +51,25 @@ class KPC:
     def set_new_pas2(self,pas):
         self.new_pas2=pas
 
-    def does_nothing():
+    def set_override_signal(self,c):
+        self.override_signal=c
+
+
+    def get_override_signal(self):
+        return self.override_signal
+
+
+    def does_allmost_nothing(self):
+        print("did almost something")
         return
+
+
+    def pw_attempt(self):
+        symbol = self.get_next_signal()
+        while signal_is_digit(symbol):
+            self.attempt += symbol
+            symbol = self.get_next_signal()
+        return self.attempt
 
 
     def get_CP(self):
@@ -95,24 +78,67 @@ class KPC:
         pw.close()
         return self.CP
 
-    def enter_new_password(self):
-        pas=None
-        np=self.keypad.get_next_signal()
-        while np!='*':
-            pas+=np
-        self.set_new_pas(pas)
+    # Clear the passcode-buffer and initiate a ”power up” lighting sequence on the LED Board.
+    # This should be done when the user first presses the keypad.
+    # starter ved å trykke på firkant,
+    def init_passcode_entry(self):
+        self.reset_CUMP()
+        self.set_override_signal(None)
+        self.Led_board.power_up()
+
+
+
+    def reset_agent(self):
+        self.reset_CUMP()
+        self.set_override_signal(None)
+        self.set_new_pas(None)
+        self.set_new_pas2(None)
+        self.LEDid=None
+        self.light_duration=None
+
+    def refresh_agent(self):
+        self.set_override_signal(None)
+        self.set_new_pas(None)
+        self.set_new_pas2(None)
+        self.LEDid=None
+        self.light_duration=None
+
+    def get_next_signal(self):
+        return self.signals.pop()
+
+    # Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key.
+    def get_next_signal1(self):
+        signal=None
+        if self.get_override_signal()==None:
+             signal=self.keypad.get_next_signal()
+        else:
+            signal=self.get_override_signal()
+        return str(signal)
+
+
+    #def does_nothing():
+     #   return
 
     # Check that the password just entered via the keypad matches that in the password file.
     # Store the result (Y or N) in the override-signal.
     # initiate the appropriate lighting pattern for login success or failure.
     def verify_login(self):
-        if self.get_CUMP()==self.get_CP():
+        if self.pw_attempt() == self.get_CP():
             self.set_override_signal('Y')
             self.twinkle_leds()
         else:
             self.set_override_signal('N')
             self.Led_board.wrong_password()
-            self.reset_agent()
+
+    #trengs denne eller kan vi bruke get-next-signal?
+    #tror kanskje det er bedre å lage dette i FSM
+    def enter_new_password2(self):
+      #  if self.validate_passcode_change():
+            self.set_new_pas2(self.pw_attempt())
+
+    def enter_new_password(self):
+        self.set_new_pas(self.pw_attempt())
+
 
     #Check that the new password is legal. If so, write the new password in the password file.
     # A legal password should be at least 4 digits long and should contain no symbols other than the digits 0-9.
@@ -123,7 +149,7 @@ class KPC:
                 legal=signal_is_digit(digit)
 
         if len(self.get_new_pas())<4 or not legal :
-            self.refresh_agent()
+
             self.set_override_signal('N')
             return False
 
@@ -131,31 +157,17 @@ class KPC:
             self.set_override_signal('Y')
             return True
 
-    def enter_new_password2(self):
-        if self.validate_passcode_change():
-            pas=None
-            np=self.keypad.get_next_signal()
-            while np!='*':
-                pas+=np
-                self.set_new_pas2(pas)
 
     def verify_password(self):
         if self.get_new_pas()==self.get_new_pas2():
             self.set_override_signal('Y')
             self.change_pw(self.get_new_pas2())
             self.twinkle_leds()
-            self.refresh_agent()
+
         else:
             self.set_override_signal('N')
             self.Led_board.wrong_password()
-            #skal tilbake til s-read3 her?
 
-
-
-    def refresh_agent(self):
-        self.set_override_signal(None)
-        self.new_pas=None
-        self.new_pas2=None
 
     def change_pw(self, password):
         password = str(password)
@@ -166,8 +178,18 @@ class KPC:
     # ledNr is the Led number, ledDr is the led Duration
     # midlertidig
 
-    def light_one_led(self, ledNr, ledDr):
-        print("Light number " + str(ledNr + 1) + " for " + str(ledDr) + " milliseconds")
+    def light_one_led(self):
+        print("Light number " + str(self.LEDid + 1) + " for " + str(self.light_duration) + " milliseconds")
+
+    def set_LED(self):
+        self.LEDid=int(self.get_next_signal())
+
+    def set_duration(self):
+        sym=self.get_next_signal()
+        while signal_is_digit(sym):
+            self.light_duration+=sym
+            sym=self.get_next_signal()
+        self.light_duration = int(sym)
 
 
     #request the flashing of all LEDs
@@ -196,8 +218,9 @@ def signal_is_led(signal): return 48 <= ord(signal) <= 53
 def is_hashtag(signal): return signal == "#"
 def is_star(signal): return signal == "*"
 
-print(signal_is_any("3"))
-print(signal_is_any("%"))
-print(signal_is_any("#"))
-print(signal_is_digit("9"))
-print(signal_is_led("3"))
+kpc = KPC()
+print(kpc.get_next_signal())
+print(kpc.get_next_signal())
+print(kpc.get_next_signal())
+print(kpc.get_next_signal())
+print(kpc.get_next_signal())

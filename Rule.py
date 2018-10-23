@@ -8,13 +8,14 @@ class Rule:
     def __init__(self, state1, state2, symbol, action):
         self.dict = {"any": signal_is_any(), "digits": signal_is_digit(), "Lid": signal_is_led(), "#": is_hashtag(),
                      "*": is_star()}
+
         self.state1 = state1
         self.state2 = state2
         self.allowed_symbols = symbol
         self.action = action
 
     def match(self, current_state, symbol):
-        if current_state == self.state1 and self.dict[self.allowed_symbols](symbol):
+        if current_state == self.state1 and self.symbol_match(symbol):
             return True
         else:
             return False
@@ -24,7 +25,7 @@ class Rule:
             return signal_is_any(symbol)
         elif self.allowed_symbols == "digits":
             return signal_is_digit(symbol)
-        elif self.allowed_symbols(symbol) == "Lid":
+        elif self.allowed_symbols == "Lid":
             return signal_is_led(symbol)
         elif self.allowed_symbols == "#":
             return "#" == symbol
@@ -36,3 +37,6 @@ class Rule:
 
     def do_action(self):
         self.action()
+    def show_rule(self):
+        print("This rule takes you from state " + self.state1 + " to " + self.state2 + ". By symbols of type " + "'" + self.allowed_symbols + "'")
+

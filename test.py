@@ -19,3 +19,19 @@ def change_pw(password):
 
 change_pw(12442)
 print(get_CP())
+
+
+print("----------")
+
+a = "1"
+b = "4"
+
+print(a)
+print(b)
+
+print("----------")
+
+c = a + b
+
+print(c)
+print(int(c))
