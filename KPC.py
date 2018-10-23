@@ -33,9 +33,12 @@ class KPC:
 
     # Clear the passcode-buffer and initiate a ”power up” lighting sequence on the LED Board.
     # This should be done when the user first presses the keypad.
+    # starter ved å trykke på firkant
     def init_passcode_entry(self):
-        self.CUMP=None
-        self.Led_board.power_up()
+        if self.keypad.get_next_signal()=='#':
+            self.CUMP=None
+            self.set_override_signal(None)
+            self.Led_board.power_up()
 
     def set_override_signal(self,c):
         self.override_signal=c
@@ -43,6 +46,11 @@ class KPC:
 
     def get_override_signal(self):
         return self.override_signal
+
+    def reset_agent(self):
+        self.CUMP=None
+        self.set_override_signal(None)
+
 
     # Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key.
     def get_next_signal(self):
@@ -53,13 +61,14 @@ class KPC:
             signal=self.get_override_signal()
         return signal
 
-    #tall eller streng?
+
     #får inn hele passordet eller legger til underveis?
     def store_CUMP(self,number):
         self.CUMP+=number
 
+    #parser til string her
     def get_CUMP(self):
-        return self.CUMP
+        return str(self.CUMP)
 
     def get_CP(self):
         pw = open(self.path, "r")
