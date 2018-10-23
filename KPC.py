@@ -101,8 +101,13 @@ class KPC:
     # ledNr is the Led number, ledDr is the led Duration
     # midlertidig
 
+
+
+
+
     def light_one_led(self, ledNr, ledDr):
         print("Light number " + str(ledNr + 1) + " for " + str(ledDr) + " milliseconds")
+
 
     #request the flashing of all LEDs
     # midlertidig
