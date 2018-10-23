@@ -40,17 +40,15 @@ class KPC:
             self.set_override_signal(None)
             self.Led_board.power_up()
 
-<<<<<<< HEAD
+
 
     def set_override_signal(self,c):
         self.override_signal=c
 
-=======
     def set_override_signal(self,c):
         self.override_signal=c
 
 
->>>>>>> 6bee2fc75349a92396872f60f4494196a3c197dd
     def get_override_signal(self):
         return self.override_signal
 
@@ -78,7 +76,7 @@ class KPC:
     def get_CUMP(self):
         return str(self.CUMP)
 
-<<<<<<< HEAD
+
     def get_new_pas(self):
         return self.new_pas
 
@@ -90,10 +88,14 @@ class KPC:
 
     def set_new_pas2(self,pas):
         self.new_pas2=pas
-=======
+
     def does_nothing():
         return
->>>>>>> 6bee2fc75349a92396872f60f4494196a3c197dd
+
+    def does_allmost_nothing():
+        print("did almost something")
+        return
+
 
     def get_CP(self):
         pw = open(self.path, "r")
@@ -201,8 +203,4 @@ def signal_is_led(signal): return 48 <= ord(signal) <= 53
 def is_hashtag(signal): return signal == "#"
 def is_star(signal): return signal == "*"
 
-print(signal_is_any("3"))
-print(signal_is_any("%"))
-print(signal_is_any("#"))
-print(signal_is_digit("9"))
-print(signal_is_led("3"))
+
