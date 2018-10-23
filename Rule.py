@@ -5,14 +5,13 @@ class Rule:
     # symbol er det eller de symbolene som gjør at man går til neste state
     # action er handlingen som utføres når regelen fyres
     def __init__(self, state1, state2, symbol, action):
-        self.dict = {"any": signal_is_any(), "digits": signal_is_digit(), "Lid": signal_is_led(), "#":is_hashtag(), "*":is_star()}
         self.state1 = state1
         self.state2 = state2
         self.allowed_symbols = symbol
         self.action = action
 
     def match(self, current_state, symbol):
-        if current_state == self.state1 and self.dict[self.allowed_symbols](symbol):
+        if current_state == self.state1 and self.symbol_match(symbol):
             return True
         else:
             return False
@@ -36,5 +35,7 @@ class Rule:
     def do_action(self):
         self.action()
 
+    def show_rule(self):
+        print("This rule takes you from state " + self.state1 + " to " + self.state2 + ". By symbols of type " + "'" + self.allowed_symbols + "'")
 
 

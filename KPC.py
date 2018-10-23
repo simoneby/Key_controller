@@ -30,6 +30,22 @@ class KPC:
         # setter opp keypad kun en gang
         self.keypad.setup()
 
+<<<<<<< HEAD
+=======
+    # Clear the passcode-buffer and initiate a ”power up” lighting sequence on the LED Board.
+    # This should be done when the user first presses the keypad.
+    # starter ved å trykke på firkant
+    def init_passcode_entry(self):
+        if self.keypad.get_next_signal()=='#':
+            self.CUMP=None
+            self.set_override_signal(None)
+            self.Led_board.power_up()
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> fa9f6da7a839c2e3fa7380c5648322997b55a997
+>>>>>>> a091e3294de19e89d569590c9302fc413434b200
 
 
 
@@ -63,6 +79,13 @@ class KPC:
     def get_override_signal(self):
         return self.override_signal
 
+<<<<<<< HEAD
+    def does_allmost_nothing():
+        print("did almost something")
+        return
+
+=======
+>>>>>>> fa9f6da7a839c2e3fa7380c5648322997b55a997
 
     def get_CP(self):
         pw = open(self.path, "r")
@@ -204,8 +227,4 @@ def signal_is_led(signal): return 48 <= ord(signal) <= 53
 def is_hashtag(signal): return signal == "#"
 def is_star(signal): return signal == "*"
 
-print(signal_is_any("3"))
-print(signal_is_any("%"))
-print(signal_is_any("#"))
-print(signal_is_digit("9"))
-print(signal_is_led("3"))
+

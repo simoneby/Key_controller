@@ -13,6 +13,7 @@ class FSM:
     # add a new rule to the end of the FSM’s rule list.
     def add_rule(self, state1, state2, symbol, action):
         rule = Rule(state1, state2, symbol, action)
+        rule.show_rule()
         self.rule_book.append(rule)
         return
 
@@ -21,15 +22,24 @@ class FSM:
         return
 
     # go through the rule set, in order, applying each rule until one of the rules is fired.
-    def run_rules(self):
-        return
+    def run_rules(self, current_state, symbol):
+        match = False
+        for rule in self.rule_book:
+            if rule.match(current_state, symbol):
+                self.fire_rule(rule)
+                print("rule matched!")
+                match = True
+        if match == False:
+            print('no rules matched :( ')
+
 
     # check whether the conditions of a rule are met
     def apply_rule(self):
         return
 
     # use the consequent of a rule to a) set the next state of the FSM, and b) call the appropriate agent action method.
-    def fire_rule(self):
+    def fire_rule(self, rule):
+        #rule.do_action()
         return
 
     # begin in the FSM’s default initial state and then repeatedly call get next signal and run rules until the FSM enters its default final state.
@@ -37,5 +47,5 @@ class FSM:
         return
 
 fsm = FSM()
-fsm.add_rule("S-init", "S-read", "any", KPC.does_nothing())
+fsm.add_rule("S-init", "S-read", "any", KPC.does_allmost_nothing())
 
