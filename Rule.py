@@ -1,11 +1,13 @@
-from KPC import*
+from KPC import *
+
 
 class Rule:
 
     # symbol er det eller de symbolene som gjør at man går til neste state
     # action er handlingen som utføres når regelen fyres
     def __init__(self, state1, state2, symbol, action):
-        self.dict = {"any": signal_is_any(), "digits": signal_is_digit(), "Lid": signal_is_led(), "#":is_hashtag(), "*":is_star()}
+        self.dict = {"any": signal_is_any(), "digits": signal_is_digit(), "Lid": signal_is_led(), "#": is_hashtag(),
+                     "*": is_star()}
         self.state1 = state1
         self.state2 = state2
         self.allowed_symbols = symbol
@@ -29,12 +31,8 @@ class Rule:
         elif self.allowed_symbols == "*":
             return "*" == symbol
 
-
     def get_next_state(self):
         return self.state2
 
     def do_action(self):
         self.action()
-
-
-
