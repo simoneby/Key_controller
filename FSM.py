@@ -58,15 +58,15 @@ fsm.add_rule("S-logout", "S-init", "#", ??)
 fsm.add_rule("S-logout", "S-active", "any", ??)
 fsm.add_rule("S-active", "S-lid", "Lid", ??)
 fsm.add_rule("S-lid", "S-time", ??, ??)
-fsm.add_rule("S-lid", "S-active", "any", ??)
+fsm.add_rule("S-lid", "S-active", "any", ??) #refresh_agent?
 fsm.add_rule("S-time", "S-active", "*", ??) #gjør action her
-fsm.add_rule("S-time", "S-active", "any", KPC.does_allmost_nothing)
+fsm.add_rule("S-time", "S-active", "any", KPC.does_allmost_nothing) #refresh_agent?
 fsm.add_rule("S-active", "S-read2", "*", ??)
 fsm.add_rule("S-read2", "S-read2", "digits", ??)
 fsm.add_rule("S-read2", "S-validate", "*", ??)
-fsm.add_rule("S-read2", "S-active", "any", ??)
+fsm.add_rule("S-read2", "S-active", "any", ??) #refresh_agent?
 fsm.add_rule("S-validate", "S-read3", "Y", ??)
-fsm.add_rule("S-validate", "S-active", "any", KPC.does_allmost_nothing)
+fsm.add_rule("S-validate", "S-active", "any", KPC.does_allmost_nothing) #refresh_agent?
 fsm.add_rule("S-read3", )
 
 

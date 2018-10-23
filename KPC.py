@@ -129,20 +129,11 @@ class KPC:
     #trengs denne eller kan vi bruke get-next-signal?
     #tror kanskje det er bedre å lage dette i FSM
     def enter_new_password2(self):
-        if self.validate_passcode_change():
-            pas=None
-            np=self.keypad.get_next_signal()
-            while np!='*':
-                pas+=np
-                self.set_new_pas2(pas)
+      #  if self.validate_passcode_change():
+            self.set_new_pas2(self.pw_attempt())
 
-    #trengs denne eller kan vi bruke get-next-signal?
     def enter_new_password(self):
-        pas=None
-        np=self.keypad.get_next_signal()
-        while np!='*':
-            pas+=np
-        self.set_new_pas(pas)
+        self.set_new_pas(self.pw_attempt())
 
 
     #Check that the new password is legal. If so, write the new password in the password file.
