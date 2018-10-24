@@ -6,7 +6,7 @@ from random import randint
 
 class LED_board:
     # the pins used on the r-pi
-    pins = [18, 23, 24]
+    pins = [16, 20, 21]
 
     # -1 is input, 0 is low and 1 is high
     pin_led_states = [

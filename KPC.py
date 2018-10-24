@@ -107,7 +107,7 @@ class KPC:
         self.light_duration = None
         self.Ldur = ""
 
-    def get_next_signal(self):
+    def get_next_signal1(self):
         while len(signals) > 0:
             self.last_signal = signals.pop()
             print("next signal: ")
@@ -115,7 +115,7 @@ class KPC:
             return self.last_signal
 
     # Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key.
-    def get_next_signal1(self):
+    def get_next_signal(self):
         signal=None
         if self.get_override_signal()==None:
              signal=self.keypad.get_next_signal()
@@ -181,12 +181,12 @@ class KPC:
     def set_LED(self):
         self.LEDid = int(self.last_signal)
 
-    def set_duration(self):
-        sym=self.get_next_signal()
-        while signal_is_digit(sym):
-            self.light_duration+=sym
-            sym=self.get_next_signal()
-        self.light_duration = int(sym)
+    #def set_duration(self):
+     #   sym=self.get_next_signal()
+      #  while signal_is_digit(sym):
+       #     self.light_duration+=sym
+        #    sym=self.get_next_signal()
+        #self.light_duration = int(sym)
 
     def record_duration(self):
         self.Ldur = self.Ldur + self.last_signal

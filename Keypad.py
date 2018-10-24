@@ -40,7 +40,7 @@ class Keypad:
 
 
 #må legge inn sikkerhet for å unngå flere signaler her, eller må man det?
-    def get_next_signal1(self):
+    def get_next_signal(self):
         x=0
         while True:
             if self.do_polling():
@@ -51,10 +51,7 @@ class Keypad:
 
             if x==90:
                 break
-
-
-
-
+        print(self.dict[self.pressed])
         self.get_symbol()
 
 
@@ -68,12 +65,11 @@ class Keypad:
 
 
 
-def main():
-    keypad=Keypad()
-    keypad.setup()
-    keypad.get_next_signal()
-    while keypad.get_symbol()!='*':
-        keypad.get_next_signal()
+#def main():
+#    keypad=Keypad()
+#    keypad.setup()
+#    keypad.get_next_signal()
+#    print(keypad.get_symbol())
 
 
 
