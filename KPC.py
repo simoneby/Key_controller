@@ -8,7 +8,7 @@ from Keypad import *
 
 # Begynner bakerst
 
-signals = ["*", "1", "3", "3", "8","N", "*", "1", "3", "3", "4", "*", "Y", "*","4", "3", "2", "1", "#"]
+signals = ["#", "#", "*", "1", "3", "3", "8","N", "*", "1", "3", "3", "4", "*", "Y", "*","4", "3", "2", "1", "#"]
 
 class KPC:
 
@@ -213,8 +213,11 @@ class KPC:
 
     def exit_action(self):
         self.reset_agent()
-        self.Led_board.power_down(self)
-        print("exiting action")
+        #self.Led_board.power_down(self)
+        print("exiting action...")
+
+    def want_to_logout(self):
+        print("Want to log out? Press #")
 
 
 

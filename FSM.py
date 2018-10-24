@@ -62,6 +62,7 @@ fsm.add_rule("S-init", "S-read", "#", KPC.init_passcode_entry)
 fsm.add_rule("S-read", "S-read", "digits", KPC.pw_attempt)
 fsm.add_rule("S-read", "S-verify", "*", KPC.verify_login)
 fsm.add_rule("S-verify", "S-active", "Y", KPC.go_to_active)
+fsm.add_rule("S-verify", "S-init", "N", KPC.go_back_to_start)
 fsm.add_rule("S-read", "S-init", "#", KPC.go_back_to_start)
 
 # Håndterer lysene. Vil lyse opp lys om man trykker korrekt. Går ellers tilbae til active.
@@ -80,10 +81,15 @@ fsm.add_rule("S-read2", "S-active", "any", KPC.go_back_to_active)
 fsm.add_rule("S-validate", "S-read3", "Y", KPC.init_retype_passcode_entry)
 fsm.add_rule("S-validate", "S-active", "N", KPC.go_back_to_active)
 fsm.add_rule("S-read3", "S-read3", "digits", KPC.retype_new_pw)
-fsm.add_rule("S-read3", "S-verify", "*", KPC.verify_password)
+fsm.add_rule("S-read3", "S-verify", "*", KPC.verify_password) #Hvis verified vil verify_password endre passord
 fsm.add_rule("S-read3", "S-active", "any", KPC.go_back_to_active)
 #Går tilbake til aktiv uansett om passord byttes eller ikke:
 fsm.add_rule("S-verify", "S-active", "any", KPC.does_allmost_nothing)
+
+# Logger ut
+fsm.add_rule("S-active", "S-logout", "#", KPC.want_to_logout)
+fsm.add_rule("S-logout", "S-init", "#", KPC.exit_action)
+fsm.add_rule("S-logout", "S-active", "any", KPC.go_back_to_active)
 
 
 
