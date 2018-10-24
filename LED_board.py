@@ -73,6 +73,7 @@ class LED_board:
         while time.time() < end_time:
             self.light_led(led_to_blink)
             time.sleep(0.4)
+        self.turn_off_led(led_to_blink)
 
     def twinkle_all_leds(self, seconds):  # successful login.
         stop = time.time() + seconds
