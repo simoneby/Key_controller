@@ -24,11 +24,11 @@ class KPC:
 
         self.override_signal=None
         self.attempt=""
-        self.last_signal=None
+        self.last_signal=""
         self.LEDid=None
         self.light_duration=None
         self.Ldur=""
-        self.CP = None
+        self.CP = ""
         self.new_pw = ""
         self.retype_new_pw = ""
 
@@ -61,6 +61,7 @@ class KPC:
         return self.attempt
 
     def new_pw(self):
+        print("new passcode: " + self.new_pw)
         self.new_pw = self.new_pw + self.last_signal
         return self.new_pw
 
@@ -90,9 +91,8 @@ class KPC:
 
 
     def reset_agent(self):
-        self.override_signal = None
         self.attempt = ""
-        self.last_signal = None
+        self.last_signal = ""
         self.LEDid = None
         self.light_duration = None
         self.Ldur = ""
@@ -100,7 +100,6 @@ class KPC:
         self.new_pw = ""
 
     def refresh_agent(self):
-        self.override_signal = None
         self.attempt = ""
         self.last_signal = None
         self.LEDid = None
@@ -121,6 +120,8 @@ class KPC:
              signal=self.keypad.get_next_signal()
         else:
             signal=self.get_override_signal()
+            self.override_signal = None
+        self.last_signal = str(signal)
         return str(signal)
 
 
@@ -130,11 +131,11 @@ class KPC:
     def verify_login(self):
         if self.attempt == self.get_CP():
             self.set_override_signal('Y')
-            #self.twinkle_leds()
+            self.twinkle_leds()
             print("correct pw, lights are twinkling")
         else:
             self.set_override_signal('N')
-            #self.Led_board.wrong_password()
+            self.Led_board.wrong_password()
             print("incorrect pw, lights are blinking boo")
         self.attempt = ""
 
@@ -144,21 +145,25 @@ class KPC:
     # denne skal sjekkes to ganger?
 
     def validate_passcode_change(self):
-        if len(self.new_pw) < 5:
+        print("Length of new passcode: ")
+        print(str(len(self.new_pw)))
+        if len(self.new_pw) < 4:
             self.set_override_signal('N')
             print("new password is not strong enough")
+            self.reset_agent()
         else:
             print("new password is strong enough")
             self.set_override_signal('Y')
-            self.reset_agent()
 
 
     def verify_password(self):
+        print(self.new_pw)
+        print(self.retype_new_pw)
         if self.retype_new_pw==self.new_pw:
             self.set_override_signal("Y")
             print("The password is changed")
             self.change_pw(self.new_pw)
-            #self.twinkle_leds()
+            self.twinkle_leds()
 
         else:
             self.set_override_signal("N")
@@ -176,6 +181,7 @@ class KPC:
     # midlertidig
 
     def light_one_led(self):
+        self.Led_board.specified_duration_blink(self.LEDid, self.light_duration)
         print("Light number " + str(self.LEDid + 1) + " ligts up for " + str(self.light_duration) + " seconds")
 
     def set_LED(self):
@@ -202,18 +208,19 @@ class KPC:
     #request the flashing of all LEDs
     # midlertidig
     def flash_leds(self):
+        self.Led_board.flash_all_leds(1)
         print("all lights are flashing")
 
     #request the twinkling of all LEDs.
     def twinkle_leds(self):
         print("all lights are twinkling")
-        self.Led_board.twinkle_all_leds(self)
+        self.Led_board.twinkle_all_leds(2)
 
     #initiate the ”power down” lighting sequence.
 
     def exit_action(self):
         self.reset_agent()
-        #self.Led_board.power_down(self)
+        self.Led_board.power_down()
         print("exiting action...")
 
     def want_to_logout(self):

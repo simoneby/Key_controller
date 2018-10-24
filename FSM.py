@@ -10,15 +10,14 @@ class FSM:
     possible_states = ["S_init", "S_Read", "S-verify", "S-active",
                        "S-Read2", "S-Validate", "S-Rule3",
                        "S-verify-new-pw", "S-Lid", "S-time", "S-logout"]
-    rule_book = []
     def __init__(self, kpc):
         self.kpc = kpc
         self.state = "S-init"
+        self.rule_book = []
 
     # add a new rule to the end of the FSM’s rule list.
     def add_rule(self, state1, state2, symbol, action):
         rule = Rule(state1, state2, symbol, action, self.kpc)
-        #rule.show_rule()
         self.rule_book.append(rule)
         return
 
@@ -31,6 +30,7 @@ class FSM:
         match = False
         for rule in self.rule_book:
             if rule.match(current_state, symbol):
+                print(rule.show_rule())
                 self.fire_rule(rule)
                 match = True
                 break
@@ -83,13 +83,22 @@ def main_loop():
 
     # Logger ut
     fsm.add_rule("S-active", "S-logout", "#", KPC.want_to_logout)
+    fsm.add_rule("S-active", "S-active", "any", KPC.does_allmost_nothing)
     fsm.add_rule("S-logout", "S-end", "#", KPC.exit_action)
     fsm.add_rule("S-logout", "S-active", "any", KPC.go_back_to_active)
 
+    print("--------")
+    print("current state: " + fsm.state)
+    print("--------")
+
     while not (fsm.state == "S-end"):
         symbol = kpc.get_next_signal()
+        print("symbol is: " + symbol)
         fsm.run_rules(fsm.state, symbol)
-        time.sleep(0.1)
+        print("--------")
+        print("current state: " + fsm.state)
+        print("--------")
+        time.sleep(1)
     return
 
 

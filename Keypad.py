@@ -52,17 +52,7 @@ class Keypad:
             if x==90:
                 break
         print(self.dict[self.pressed])
-        self.get_symbol()
-
-
-    def get_symbol(self):
-        #self.returned()
         return self.dict[self.pressed]
-
-    #def returned(self):
-     #   return True
-
-
 
 
 #def main():
@@ -73,7 +63,7 @@ class Keypad:
 
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+ #   main()
 
 
